@@ -1,0 +1,32 @@
+:root {
+  --dg-radius: 8px;
+  --dg-hover-scale: 1.05;
+  --dg-overlay: 0.9;
+}
+
+/* Container fills the hero section you place it in */
+.dg-root { position: relative; width: 100%; height: 100%; }
+.dg-container { position: relative; width: 100%; height: 100%; overflow: hidden; cursor: grab; }
+.dg-canvas { position: absolute; top: 0; left: 0; will-change: transform; }
+
+.dg-item { position: absolute; overflow: hidden; background: #000; border-radius: var(--dg-radius); }
+.dg-item .dg-imgwrap { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.dg-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; transition: transform .3s ease; }
+.dg-item:hover img { transform: scale(var(--dg-hover-scale)); }
+
+.dg-item .dg-cap { position: absolute; left: 0; bottom: 0; width: 100%; padding: 10px; color: #fff; }
+.dg-cap .dg-name { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1; margin-bottom: 2px; overflow: hidden; }
+.dg-cap .dg-num  { font-size: 10px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #aaa; overflow: hidden; }
+
+.dg-overlay { position: fixed; inset: 0; background: #000; opacity: 0; pointer-events: none; z-index: 60; }
+.dg-overlay.dg-active { pointer-events: auto; }
+
+.dg-title { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; z-index: 70; }
+.dg-title p { color: #fff; font-weight: 600; font-size: clamp(20px, 3.2vw, 40px); letter-spacing: -0.03em; text-transform: uppercase; height: 42px; overflow: hidden; }
+
+.dg-expanded { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: #000; overflow: hidden; border-radius: var(--dg-radius); z-index: 65; }
+.dg-expanded img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-item img { transition: none; }
+}
