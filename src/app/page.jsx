@@ -1,4 +1,4 @@
-import ProjectGallery from "./components/ProjectGallery"; // if you’re using the gallery
+// import ProjectGallery from "./components/ProjectGallery"; // if you’re using the gallery
 import HeroDraggableGallery from "./components/HeroDraggableGallery";
 import { getHeroImages } from "./components/getHeroImages";
 

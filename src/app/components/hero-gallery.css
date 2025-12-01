@@ -5,7 +5,12 @@
 }
 
 /* Container fills the hero section you place it in */
-.dg-root { position: relative; width: 100%; height: 100%; }
+.dg-root { position: relative; width: 100%; height: 100%;   user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Safari, Chrome, Opera */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  -webkit-touch-callout: none; /* iOS Safari */
+}
 .dg-container { position: relative; width: 100%; height: 100%; overflow: hidden; cursor: grab; }
 .dg-canvas { position: absolute; top: 0; left: 0; will-change: transform; }
 

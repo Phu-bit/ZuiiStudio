@@ -11,15 +11,27 @@ export default function Header() {
 
   useEffect(() => {
     if (!ref.current) return;
-    anime('.square',{
+    anime({
       targets: ref.current.children,
       translateY: [-8, 0],
       opacity: [0, 1],
       duration: 900,
-      delay: stagger(70),
-      easing: "easeOutExpo"
+      delay: anime.stagger(70),
+      easing: "easeOutExpo",
     });
   }, []);
+
+  const NavLink = ({ href, children }) => (
+    <Link href={href} className="group relative inline-flex items-center hover:opacity-70">
+      <span>{children}</span>
+      {/* underline that grows from the left */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-1 left-0 h-[2px] w-full bg-current origin-left
+                   scale-x-0 transition-transform duration-300 group-hover:scale-x-100 group-focus-visible:scale-x-100"
+      />
+    </Link>
+  );
 
   return (
     <div className="sticky top-0 z-50 backdrop-blur">
@@ -28,8 +40,8 @@ export default function Header() {
           <img src="/zuii-white.svg" alt="" className="h-6 w-auto" />
         </Link>
         <nav className="flex gap-6">
-          <Link href="/work" className="hover:opacity-70">Work</Link>
-          <Link href="/about" className="hover:opacity-70">About</Link>
+          <NavLink href="/work">Work</NavLink>
+          <NavLink href="/about">About</NavLink>
         </nav>
       </header>
     </div>
