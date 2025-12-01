@@ -11,12 +11,12 @@ export default function Header() {
 
   useEffect(() => {
     if (!ref.current) return;
-    anime({
+    anime('.square',{
       targets: ref.current.children,
       translateY: [-8, 0],
       opacity: [0, 1],
       duration: 900,
-      delay: anime.stagger(70),
+      delay: stagger(70),
       easing: "easeOutExpo",
     });
   }, []);

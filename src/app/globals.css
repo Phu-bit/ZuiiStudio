@@ -26,3 +26,50 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ==== Paper background with subtle grain (pure CSS) ==== */
+.paper-grain {
+  --paper-color: #f6f3ee;           /* off-white */
+  --grain-alpha: 0.08;              /* noise strength */
+  --fiber-alpha: 0.04;              /* soft fibers / mottling */
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1200px 800px at 20% 10%, rgba(0,0,0,var(--fiber-alpha)) 0%, transparent 60%),
+    radial-gradient(900px 700px at 80% 40%, rgba(0,0,0,var(--fiber-alpha)) 0%, transparent 65%),
+    var(--paper-color);
+}
+.paper-grain::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: var(--grain-alpha);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+  mix-blend-mode: multiply;
+}
+
+/* ==== Draggable “sticker” circles ==== */
+.sticker {
+  position: absolute;
+  will-change: transform;
+  transition: filter 150ms ease, transform 100ms ease;
+}
+.sticker:active { cursor: grabbing; }
+.circle {
+  border-radius: 9999px;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.06),
+    0 8px 24px rgba(0,0,0,0.08);
+  display: grid;
+  place-items: center;
+}
+.sticker-label {
+  font-size: 24px; /* swap later when you replace with custom shapes */
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  color: #111;
+}
